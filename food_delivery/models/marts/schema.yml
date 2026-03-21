@@ -1,0 +1,101 @@
+version: 2
+
+models:
+  - name: dim_couriers
+    description: "Lookup table containing active courier information including vehicle type and signup history."
+    columns:
+      - name: courier_id
+        description: "Unique identifier for each courier"
+        tests:
+          - unique
+          - not_null
+      - name: courier_name
+        description: "Display name of the courier"
+        tests:
+          - not_null
+      - name: vehicle_type
+        description: "Type of vehicle used for deliveries (bike, car, scooter, ebike)"
+      - name: signup_date
+        description: "Date when courier registered with the platform"
+      - name: days_since_signup
+        description: "Number of days between signup date and today"
+  
+  - name: dim_zones
+    description: "Geographic zones where deliveries are made. Includes city and region information."
+    columns:
+      - name: zone_id
+        description: "Unique identifier for each delivery zone"
+        tests:
+          - unique
+          - not_null
+      - name: zone_name
+        description: "Name of the delivery zone (e.g., Downtown, Uptown)"
+        tests:
+          - not_null
+      - name: city
+        description: "City where the zone is located"
+        tests:
+          - not_null
+      - name: region
+        description: "Province/state of the zone"
+        tests:
+          - not_null
+      - name: full_location
+        description: "Combined city and zone name for display purposes"
+        tests:
+          - not_null
+  
+  - name: fct_deliveries
+    description: "Completed deliveries with assigned couriers. Excludes cancelled and unassigned deliveries. Joins delivery details with courier and zone information."
+    columns:
+      - name: delivery_id
+        description: "Unique identifier for each delivery"
+        tests:
+          - unique
+          - not_null
+      - name: order_timestamp
+        description: "When the order was placed"
+      - name: delivery_timestamp
+        description: "When the delivery was completed"
+      - name: delivery_time_minutes
+        description: "Time elapsed between order placement and delivery completion in minutes"
+        tests:
+          - not_null
+      - name: tip_amount
+        description: "Tip given by customer in dollars"
+      - name: distance_km
+        description: "Distance traveled for the delivery in kilometers"
+      - name: courier_name
+        description: "Name of courier who completed the delivery"
+        tests:
+          - not_null
+      - name: vehicle_type
+        description: "Vehicle type used for this delivery"
+      - name: zone_name
+        description: "Delivery zone name"
+        tests:
+          - not_null
+      - name: city
+        description: "City where delivery was made"
+  
+  - name: mart_courier_performance
+    description: "Aggregated courier performance metrics. One row per courier showing total deliveries, average times, and earnings."
+    columns:
+      - name: courier_name
+        description: "Name of the courier"
+        tests:
+          - not_null
+      - name: vehicle_type
+        description: "Vehicle type used by courier"
+        tests:
+          - not_null
+      - name: total_deliveries
+        description: "Total number of completed deliveries"
+        tests:
+          - not_null
+      - name: avg_delivery_time
+        description: "Average delivery time in minutes"
+      - name: total_tips
+        description: "Sum of all tips received in dollars"
+      - name: avg_distance
+        description: "Average delivery distance in kilometers"

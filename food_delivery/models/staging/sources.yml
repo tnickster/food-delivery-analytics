@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: raw_data
+    tables:
+      - name: raw_deliveries
+      - name: raw_couriers
+      - name: raw_zones

@@ -1,0 +1,21 @@
+# Virtual environment
+venv/
+
+# dbt artifacts
+food_delivery/target/
+food_delivery/dbt_packages/
+food_delivery/logs/
+
+# Python
+__pycache__/
+*.pyc
+
+# Credentials
+*.json
+profiles.yml
+
+# CSV data
+*.csv
+
+# OS files
+.DS_Store
