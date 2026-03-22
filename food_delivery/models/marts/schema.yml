@@ -15,6 +15,9 @@ models:
           - not_null
       - name: vehicle_type
         description: "Type of vehicle used for deliveries (bike, car, scooter, ebike)"
+        tests:
+          - accepted_values:
+              values: ['bike', 'car', 'scooter', 'ebike']
       - name: signup_date
         description: "Date when courier registered with the platform"
       - name: days_since_signup
@@ -63,12 +66,19 @@ models:
           - not_null
       - name: tip_amount
         description: "Tip given by customer in dollars"
+        tests:
+          - positive_values
       - name: distance_km
         description: "Distance traveled for the delivery in kilometers"
+        tests:
+          - positive_values
       - name: courier_name
         description: "Name of courier who completed the delivery"
         tests:
           - not_null
+          - relationships:
+              to: ref('dim_couriers')
+              field: courier_name
       - name: vehicle_type
         description: "Vehicle type used for this delivery"
       - name: zone_name
@@ -93,9 +103,16 @@ models:
         description: "Total number of completed deliveries"
         tests:
           - not_null
+          - positive_values
       - name: avg_delivery_time
         description: "Average delivery time in minutes"
+        tests:
+          - positive_values
       - name: total_tips
         description: "Sum of all tips received in dollars"
+        tests:
+          - positive_values
       - name: avg_distance
         description: "Average delivery distance in kilometers"
+        tests:
+          - positive_values

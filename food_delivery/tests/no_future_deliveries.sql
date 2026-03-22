@@ -1,0 +1,1 @@
+SELECT * FROM {{ ref('fct_deliveries') }} WHERE order_timestamp > current_timestamp()
