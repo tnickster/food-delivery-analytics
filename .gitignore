@@ -19,3 +19,6 @@ profiles.yml
 
 # OS files
 .DS_Store
+
+#Enviroment variables
+.env
