@@ -26,3 +26,5 @@ profiles.yml
 airflow/logs/
 airflow/config/
 food_delivery/.user.yml
+
+logs/
