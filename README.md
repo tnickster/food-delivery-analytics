@@ -1,6 +1,6 @@
 # Food Delivery Analytics Pipeline
 
-An end-to-end data engineering portfolio project built to demonstrate production-grade pipeline development. The pipeline extracts raw food delivery data, loads it to Google BigQuery, and transforms it into business-ready analytics tables using dbt — all orchestrated by Apache Airflow running in Docker.
+An end-to-end data engineering portfolio project built to demonstrate production-grade pipeline development. The pipeline extracts raw food delivery data, loads it to Google BigQuery, and transforms it into business-ready analytics tables using dbt, all orchestrated by Apache Airflow running in Docker.
 
 ---
 
