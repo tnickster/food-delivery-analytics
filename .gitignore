@@ -22,3 +22,7 @@ profiles.yml
 
 #Enviroment variables
 .env
+
+airflow/logs/
+airflow/config/
+food_delivery/.user.yml
